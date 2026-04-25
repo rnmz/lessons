@@ -31,3 +31,18 @@ async def websocket_endpoint(websocket: WebSocket):
                     continue 
     except WebSocketDisconnect:
         connections.remove(websocket)
+
+@app.get("/admin/clear")
+async def clear_canvas():
+    global canvas
+    # Очищаем матрицу на сервере
+    canvas = [["000000" for _ in range(50)] for _ in range(50)]
+    
+    # Рассылаем ВСЕМ сигнал об очистке
+    for client in connections:
+        try:
+            # Отправляем специальный флаг вместо координат
+            await client.send_json({"action": "clear"})
+        except:
+            continue
+    return {"message": "Поле очищено"}
