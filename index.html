@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Укорачиватель</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h2>Сократить ссылку</h2>
+    <input type="text" id="urlInput" placeholder="Вставьте ссылку сюда">
+    <button onclick="shorten()">OK</button>
+    <p id="result"></p>
+    <script>
+        async function shorten() {
+    const urlInput = document.getElementById('urlInput');
+    const resultElement = document.getElementById('result');
+    const url = urlInput.value;
+
+    if (!url) {
+        alert("Введите ссылку!");
+        return;
+    }
+    try {
+        const response = await fetch('/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ "full_url": url }) // Ключ должен быть в кавычках
+        });
+
+        if (!response.ok) {
+            throw new Error('Ошибка сервера: ' + response.status);
+        }
+
+        const data = await response.json();
+        
+        // Формируем полную ссылку для клика
+        const finalLink = window.location.origin + '/' + data.short_id;
+        resultElement.innerHTML = `Сокращено: <a href="${finalLink}" target="_blank">${finalLink}</a>`;
+        
+    } catch (error) {
+        resultElement.innerHTML = "Ошибка: " + error.message;
+        console.error("Детали ошибки:", error);
+    }
+}
+    </script>
+</body>
+</html>
