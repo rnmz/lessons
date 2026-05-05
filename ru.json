@@ -1,27 +1,72 @@
 {
     "start": {
-        "text": "Привет! Я твой гид. Куда отправимся сегодня?",
-        "choices": [
-            {"text": "В таинственный замок", "next": "castle"},
-            {"text": "На прогулку к реке", "next": "river"}
-        ]
+        "text": [
+            {
+                "name": "Гид",
+                "text": "Привет! Я твой гид. Куда отправимся сегодня?"
+            },
+            {
+                "name": "Мальчик",
+                "text": "Привет! Я хочу...",
+                "choice": [
+                    {
+                        "river": "К реке",
+                        "castle": "В замок!"
+                    }
+                ]
+            },
+            {
+                "name": "Гид",
+                "text": "Хорошо!"
+            }
+            ],
+        "chars": [
+            "hero.png",
+            "car.png"
+        ],
+        "background": "bg.png",
+        "audio": "path/to/music"
     },
     "castle": {
-        "text": "Замок выглядит зловеще... Ты уверен, что хочешь войти?",
-        "choices": [
-            {"text": "Войти внутрь", "next": "win"},
-            {"text": "Вернуться назад", "next": "start"}
-        ]
+        "text": [
+            {
+                "name": "Гид",
+                "char": "path/to/char.png",
+                "text": "Привет! Я твой гид. Куда отправимся сегодня?"
+            },
+            {
+                "name": "Мальчик",
+                "char": "path/to/char.png",
+                "text": "Привет! Я хочу..."
+            },
+            {
+                "name": "Гид",
+                "char": "path/to/char.png",
+                "text": "Хорошо!"
+            }
+            ],
+        "background": "path/to/background.png",
+        "audio": "path/to/music"
     },
     "river": {
-        "text": "У реки очень красиво. Кажется, я вижу золотую рыбку!",
-        "choices": [
-            {"text": "Попробовать поймать", "next": "win"},
-            {"text": "Вернуться назад", "next": "start"}
-        ]
-    },
-    "win": {
-        "text": "Поздравляю! Ты нашел приключения. Игра окончена.",
-        "choices": [{"text": "В главное меню", "next": "menu_return"}]
+        "text": [
+            {
+                "name": "Гид",
+                "char": "path/to/char.png",
+                "text": "Привет! Я твой гид. Куда отправимся сегодня?"
+            },
+            {
+                "name": "Мальчик",
+                "char": "path/to/char.png",
+                "text": "Привет! Я хочу..."
+            },
+            {
+                "name": "Гид",
+                "char": "path/to/char.png",
+                "text": "Хорошо!"
+            }
+            ],
+        "background": "path/to/background.png",
+        "audio": "path/to/music"
     }
 }
